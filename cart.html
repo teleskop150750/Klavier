@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина</title>
+  <link rel="stylesheet" href="core.css">
+  <link rel="stylesheet" href="catalog.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+
+<body class="page__body js-scroll">
+  <header class="header header--shadow page__header">
+    <div class="header__inner">
+
+      <nav class="nav header__nav">
+        <a href="index.html" class="nav__logo">En Avant</a>
+
+        <button class="nav-button nav__button" type="button" aria-label="открыть меню">
+          <span class="nav-button__liner"></span>
+        </button>
+
+        <div class="nav__list">
+          <ul class="nav__list-inner">
+            <li class="nav__item">
+              <a href="about.html" class="nav__link">О нас</a>
+            </li>
+            <li class="nav__item">
+              <a href="mess.html" class="nav__link">Написать нам</a>
+            </li>
+            <li class="nav__item">
+              <a href="contact.html" class="nav__link">Контакты</a>
+            </li>
+            <li class="nav__item">
+              <a href="woman.html" class="nav__link">Женская одежна</a>
+            </li>
+            <li class="nav__item">
+              <a href="man.html" class="nav__link">Мужская одежна</a>
+            </li>
+            <li class="nav__item nav__item--right">
+              <a href="#" class="nav__link nav__link--active">Корзина</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main page__main" id="cart">
+    <h1 class="visually-hidden">Корзина</h1>
+    <section class="cart main__cart">
+      <h2 class="visually-hidden">Список покупок</h2>
+      <div class="cart__inner">
+        <div v-if="idArray.length > 0">
+          <div class="cart__header" v-if="productsCheck.length === 0">
+            <button class="cart__button cart__button--clear" @click="deleteAll()">Удалить все</button>
+            <div class="cart__bay-all">
+              <p class="cart__price-all">Цена: {{ priceAll}}р.</p>
+              <button class="cart__button cart__button--buy-all" @click="modalOpen('all', $event.target)">
+                Купить все
+              </button>
+            </div>
+          </div>
+          <div class="cart__header" v-else>
+            <button class="cart__button cart__button--clear" @click="deleteCheck()">Удалить выбранные</button>
+            <div class="cart__bay-all">
+              <p class="cart__price-all">Цена: {{ priceCheck }}р.</p>
+              <button class="cart__button cart__button--buy-all" @click="modalOpen('check', $event.target)">
+                Купить выбранные
+              </button>
+            </div>
+          </div>
+
+          <ul class="cart__list">
+            <li class="cart__item" v-for="(product, i) in productsBuy" :key="product['id']">
+              <article class="product product--cart cart__product">
+                <div :id="'carouselExampleControls' + i" data-ride="carousel" class="carousel slide">
+                  <div class="carousel-inner">
+                    <div v-for="(img,k) in product['img']" v-if="k === 0" class="carousel-item active">
+                      <img v-bind:src="'img/' + img" class="d-block w-100" alt="...">
+                    </div>
+                    <div v-else class="carousel-item">
+                      <img v-bind:src="'img/' + img" class="d-block w-100" alt="...">
+                    </div>
+                    <a v-bind:href="'#carouselExampleControls' + i" role="button" data-slide="prev"
+                      class="carousel-control-prev">
+                      <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a v-bind:href="'#carouselExampleControls' + i" role="button" data-slide="next"
+                      class="carousel-control-next">
+                      <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="product__content">
+                  <div class="product__body">
+                    <div class="product__title-wrapper">
+                      <h3 class="product__title">{{ product['name'] }}</h3>
+                      <label class="product__check-wrapper" aria-label="Выбрать товар">
+                        <input class="product__check-input" type="checkbox"
+                          @change="addCheck(product, $event.target)">
+                        <span class="product__check-box"></span>
+                      </label>
+                    </div>
+                    <div class="product__colors">
+                      <p class="product__color-text">Цвет:</p>
+                      <span class="product__color-item" v-for="color in product['color']"
+                        :style="{ backgroundColor: color}"></span>
+                    </div>
+                    <div class="product__sizes">
+                      <div class="select-group form__group">
+                        <label class="select-group__label" for="title">Выбирете размер</label>
+                        <div class="select-group__select-wrap">
+                          <select class="select-group__select js-input" id="title" name="title">
+                            <option :value="size" v-for="size in product['size']">{{ size }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="product__price">{{ product['price'] }}р.</p>
+                  </div>
+                  <div class="product__footer">
+                    <button class="product__button" type="button"
+                      @click="modalOpen('one', $event.target, product['id'])">Купить</button>
+                    <button class="product__button product__button--comm" type="button"
+                      @click="deleteOne(product['id'])">Удалить</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <div v-else>
+          <h2>Коризина пуста</h2>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal modal--close modal--buy js-scroll" style="display: none;">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3 class="modal__title" v-if="modalType === 'one'">Покупка на сумму {{ priceOne }}</h3>
+          <h3 class="modal__title" v-else-if="modalType === 'all'">Покупка на сумму {{ priceAll }}</h3>
+          <h3 class="modal__title" v-else-if="modalType === 'check'">Покупка на сумму {{ priceCheck }}</h3>
+          <button class="modal__button" type="button" aria-label="закрыть модальное окно"></button>
+        </div>
+        <div class="modal__body">
+          <form class="form card__form" @submit.prevent="buyProducts($event.target)">
+            <div class="input-group form__group">
+              <label class="input-group__label" for="numberCart">Номер карты</label>
+              <input class="input-group__input js-input" type="text" id="numberCart" name="numberCart">
+            </div>
+            <div class="input-group form__group">
+              <label class="input-group__label" for="name">Имя владельца</label>
+              <input class="input-group__input js-input" type="text" id="name" name="name">
+            </div>
+            <div class="input-group form__group">
+              <label class="input-group__label input-group__label--fix" for="date">Дата</label>
+              <input class="input-group__input js-input" type="date" id="date" name="date">
+            </div>
+            <div class="input-group form__group">
+              <label class="input-group__label" for="num">Секретный номер</label>
+              <input class="input-group__input js-input" type="text" id="num" name="num">
+            </div>
+            <div class="input-group form__group">
+              <label class="input-group__label" for="tel">Номер телефона</label>
+              <input class="input-group__input js-input" type="text" id="tel" name="tel">
+            </div>
+            <div class="input-group form__group">
+              <label class="input-group__label" for="adress">Адресс доставки</label>
+              <input class="input-group__input js-input" type="text" id="adress" name="adress">
+            </div>
+
+            <button type="submit" class="form__button">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer page__footer">
+    <div class="footer__inner">
+      <p class="footer__copy">ГПОУ ТО "Донской колледж информационных технологий" Кузьмина Анастасия 4-П-1 © 2021</p>
+    </div>
+  </footer>
+  <script src="core.js" type="module"></script>
+  <script src="libs/bootstrap.carousel.js" type="module"></script>
+  <script src="cart.js" type="module"></script>
+</body>
+
+</html>

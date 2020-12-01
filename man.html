@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мужская одежда</title>
+  <link rel="stylesheet" href="core.css">
+  <link rel="stylesheet" href="catalog.css">
+</head>
+
+<body class="page__body js-scroll">
+  <header class="header header--shadow page__header">
+    <div class="header__inner">
+
+      <nav class="nav header__nav">
+        <a href="index.html" class="nav__logo">En Avant</a>
+
+        <button class="nav-button nav__button" type="button" aria-label="открыть меню">
+          <span class="nav-button__liner"></span>
+        </button>
+
+        <div class="nav__list">
+          <ul class="nav__list-inner">
+            <li class="nav__item">
+              <a href="about.html" class="nav__link">О нас</a>
+            </li>
+            <li class="nav__item">
+              <a href="mess.html" class="nav__link">Написать нам</a>
+            </li>
+            <li class="nav__item">
+              <a href="contact.html" class="nav__link">Контакты</a>
+            </li>
+            <li class="nav__item">
+              <a href="woman.html" class="nav__link">Женская одежна</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link nav__link--active">Мужская одежна</a>
+            </li>
+            <li class="nav__item nav__item--right">
+              <a href="cart.html" class="nav__link">Корзина</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main page__main" id="catalog_Vue">
+    <h1 class="visually-hidden">Каталог</h1>
+    <section class="products main__products">
+      <h2 class="visually-hidden">Мужская одежда</h2>
+      <div class="products__inner">
+        <div class="products__buttons">
+          <button class="products__button" type="button" v-for="(button, i) in buttons"
+            :class="{ 'products__button--active': button['isActive'] }"
+            @click="sortProducts(button['category'], i)">{{ button['name'] }}</button>
+        </div>
+
+        <ul class="products__list">
+          <li class="products__item" v-for="(product, i) in productsSort" :key="product['id']">
+            <article class="product products__product">
+              <div :id="'carouselExampleControls' + i" data-ride="carousel" class="carousel slide">
+                <div class="carousel-inner">
+                  <div v-for="(img,k) in product['img']" v-if="k === 0" class="carousel-item active">
+                    <img v-bind:src="'img/' + img" class="d-block w-100" alt="...">
+                  </div>
+                  <div v-else class="carousel-item">
+                    <img v-bind:src="'img/' + img" class="d-block w-100" alt="...">
+                  </div>
+                  <a v-bind:href="'#carouselExampleControls' + i" role="button" data-slide="prev"
+                    class="carousel-control-prev">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a v-bind:href="'#carouselExampleControls' + i" role="button" data-slide="next"
+                    class="carousel-control-next">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product__content">
+                <div class="product__body">
+                  <h3 class="product__title">{{ product['name'] }}</h3>
+                  <div class="product__colors">
+                    <p class="product__color-text">Цвет:</p>
+                    <span class="product__color-item" v-for="color in product['color']"
+                      :style="{ backgroundColor: color}"></span>
+                  </div>
+                  <div class="product__sizes">
+                    <span class="product__size" v-for="size in product['size']">
+                      {{ size }}
+                    </span>
+                  </div>
+                  <p class="product__price">{{ product['price'] }}р.</p>
+                </div>
+                <div class="product__footer">
+                  <button class="product__button" @click="addToCart(product['id'], $event.target)">В корзину</button>
+                  <button class="product__button product__button--comm"
+                    @click="openModalComment(product['id'], $event.target)">Комментарии</button>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="modal modal--close modal--cart js-scroll" style="display: none;">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3 class="modal__title">{{ modalTitle }}</h3>
+          <button class="modal__button" type="button" aria-label="закрыть модальное окно"></button>
+        </div>
+        <div class="modal__body">
+          <p>{{ modalContent }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal modal--close modal--comment js-scroll" style="display: none;">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3 class="modal__title">Добавить комментарий</h3>
+          <button class="modal__button" type="button" aria-label="закрыть модальное окно"></button>
+        </div>
+        <div class="modal__body">
+          <p v-for="comment in comments">{{ comment }}</p>
+          <form class="form card__form" @submit.prevent="addComment">
+            <div class="textarea-group form__group">
+              <label class="textarea-group__label" for="text">Сообщение</label>
+              <textarea class="textarea-group__textarea  js-input" id="text" name="text"></textarea>
+            </div>
+
+            <button class="form__button" type="submit">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer page__footer">
+    <div class="footer__inner">
+      <p class="footer__copy">ГПОУ ТО "Донской колледж информационных технологий" Кузьмина Анастасия 4-П-1 © 2021</p>
+    </div>
+  </footer>
+  <script src="core.js" type="module"></script>
+  <script src="man.js" type="module"></script>
+  <script src="libs/bootstrap.carousel.js" type="module"></script>
+</body>
+
+</html>

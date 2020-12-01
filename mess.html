@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Написать нам</title>
+  <link rel="stylesheet" href="core.css">
+  <link rel="stylesheet" href="mess.css">
+</head>
+
+<body class="page__body js-scroll">
+  <header class="header header--shadow page__header">
+    <div class="header__inner">
+
+      <nav class="nav header__nav">
+        <a href="index.html" class="nav__logo">En Avant</a>
+
+        <button class="nav-button nav__button" type="button" aria-label="открыть меню">
+          <span class="nav-button__liner"></span>
+        </button>
+
+        <div class="nav__list">
+          <ul class="nav__list-inner">
+            <li class="nav__item">
+              <a href="about.html" class="nav__link">О нас</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link nav__link--active">Написать нам</a>
+            </li>
+            <li class="nav__item">
+              <a href="contact.html" class="nav__link">Контакты</a>
+            </li>
+            <li class="nav__item">
+              <a href="woman.html" class="nav__link">Женская одежна</a>
+            </li>
+            <li class="nav__item">
+              <a href="man.html" class="nav__link">Мужская одежна</a>
+            </li>
+            <li class="nav__item nav__item--right">
+              <a href="cart.html" class="nav__link">Корзина</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main page__main">
+    <section class="card card--form">
+      <h1 class="visually-hidden">Написать сообщение</h1>
+      <div class="card__wrapper">
+        <div class="card__inner">
+          <form class="form card__form">
+            <div class="input-group form__group">
+              <label class="input-group__label" for="name">Ваше имя</label>
+              <input class="input-group__input js-input" type="text" id="name" name="name">
+            </div>
+
+            <div class="input-group form__group">
+              <label class="input-group__label" for="email">Ваш email</label>
+              <input class="input-group__input js-input" type="email" id="email" name="email">
+            </div>
+
+            <div class="select-group form__group">
+              <label class="select-group__label" for="title">Выбирете тему</label>
+              <div class="select-group__select-wrap">
+                <select class="select-group__select js-input" id="title" name="title">
+                  <option value="thanks">Благодарность</option>
+                  <option value="sentence">Предложение</option>
+                  <option value="complaint">Жалоба</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="textarea-group form__group">
+              <label class="textarea-group__label" for="text">Сообщение</label>
+              <textarea class="textarea-group__textarea  js-input" id="text" name="text"></textarea>
+            </div>
+
+            <button class="form__button" type="submit">Отправить</button>
+          </form>
+
+          <div class="card__img-wrapper">
+            <picture>
+              <source srcset="img/hanger.webp" media="(min-width: 700px)">
+              <img class="card__img" alt="вешалка">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer page__footer">
+    <div class="footer__inner">
+      <p class="footer__copy">ГПОУ ТО "Донской колледж информационных технологий" Кузьмина Анастасия 4-П-1 © 2021</p>
+    </div>
+  </footer>
+  <div class="modal modal--close js-scroll" style="display: none;">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 class="modal__title">Отправлено</h3>
+        <button class="modal__button" type="button" aria-label="закрыть модальное окно"></button>
+      </div>
+      <div class="modal__body">
+        <p class="modal__text">Спасибо за благодарность.</p>
+        <p class="modal__text">Мы рады что вы остались довольны!</p>
+      </div>
+    </div>
+  </div>
+  <script src="core.js" type="module"></script>
+  <script src="mess.js" type="module"></script>
+</body>
+
+</html>
