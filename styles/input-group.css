@@ -1,0 +1,96 @@
+/* input-group */
+
+.input-group {
+  position: relative;
+  width: 100%;
+  min-height: 3em;
+  padding-top: 1em;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.input-group::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 2px;
+  content: '';
+  background-color: var(--color-melrose-dark);
+  opacity: 0;
+  transition:
+    border 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: border, opacity, transform;
+  transform: scaleX(0.12);
+}
+
+.input-group::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  content: '';
+  background-color: var(--color-black-a42);
+  transition:
+    border 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: border, opacity, transform;
+}
+
+.input-group--focus::before {
+  background-color: var(--color-melrose-dark);
+  opacity: 1;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: border, opacity, transform;
+  transform: scaleX(1);
+}
+
+.input-group--error::before {
+  background-color: var(--color-red);
+  opacity: 1;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: border, opacity, transform;
+  transform: scaleX(1);
+}
+
+.input-group__label {
+  position: absolute;
+  top: 1.44em;
+  left: 0;
+  color: var(--color-black-a54);
+  pointer-events: none;
+  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.input-group__label--fix,
+.input-group__label--value {
+  top: 0;
+  font-size: 0.75em;
+  pointer-events: all;
+  opacity: 1;
+}
+
+.input-group__label--focus {
+  color: var(--color-melrose-dark);
+}
+
+.input-group__input {
+  display: block;
+  width: 100%;
+  height: 2em;
+  padding: 0;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 2em;
+  background: none;
+  border: none;
+  outline: none;
+  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-property: font-size, padding-top, color;
+}

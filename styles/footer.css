@@ -1,0 +1,22 @@
+/* Footer */
+
+.footer {
+  position: relative;
+  z-index: 500;
+  font-size: 1em;
+  background-color: var(--color-melrose);
+}
+
+.footer--shadow {
+  box-shadow: 0 -0.5rem 1rem var(--color-black-a15);
+}
+
+.footer__inner {
+  padding: 1rem;
+}
+
+.footer__copy {
+  font-weight: 300;
+  color: var(--color-melrose-dark);
+  text-align: center;
+}

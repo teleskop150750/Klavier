@@ -1,0 +1,81 @@
+/* nav-button */
+
+@media (min-width: 0) and (max-width: 955px) {
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 40px;
+    padding: 0.25rem 0.55rem;
+    font-size: 1.25em;
+    line-height: 1;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-color: var(--color-melrose-darker);
+    border-radius: 0.25rem;
+    outline: none;
+    transition: border-color 0.2s ease-in;
+  }
+
+  .nav-button:focus {
+    border-color: var(--color-melrose-dark);
+  }
+
+  .nav-button__liner {
+    position: relative;
+  }
+
+  .nav-button__liner,
+  .nav-button__liner::before,
+  .nav-button__liner::after {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--color-melrose-dark);
+    border-radius: 3px;
+    transition: all 0.4s linear;
+    transform-origin: center center;
+  }
+
+  .nav-button__liner::before,
+  .nav-button__liner::after {
+    position: absolute;
+    left: 50%;
+    content: '';
+    transform: translateX(-50%);
+  }
+
+  .nav-button__liner::before {
+    bottom: 9px;
+  }
+
+  .nav-button__liner::after {
+    top: 9px;
+  }
+
+  .nav-button--close .nav-button__liner::before {
+    animation: closeTop 0.3s linear forwards;
+  }
+
+  .nav-button--close .nav-button__liner {
+    animation: closeMiddle 0.3s linear forwards;
+  }
+
+  .nav-button--close .nav-button__liner::after {
+    animation: closeBottom 0.3s linear forwards;
+  }
+
+  .nav-button--open .nav-button__liner::before {
+    animation: openTop 0.3s linear forwards;
+  }
+
+  .nav-button--open .nav-button__liner {
+    animation: openMiddle 0.3s linear forwards;
+  }
+
+  .nav-button--open .nav-button__liner::after {
+    animation: openBottom 0.3s linear forwards;
+  }
+}

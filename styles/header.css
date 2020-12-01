@@ -1,0 +1,21 @@
+/* Header */
+
+.header {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  background-color: var(--color-melrose);
+}
+
+.header--shadow {
+  box-shadow: 0 0.5rem 1rem var(--color-black-a15);
+}
+
+.header__inner {
+  flex-grow: 1;
+  max-width: 1360px;
+  padding: 1rem;
+  margin: 0 auto;
+}

@@ -1,0 +1,11 @@
+/* Main */
+
+.main {
+  padding: 3em 0;
+  background-color: var(--color-grey-lightest);
+}
+
+.main--index {
+  padding: 0;
+  background-color: var(--color-melrose);
+}

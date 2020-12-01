@@ -1,0 +1,47 @@
+/* Global */
+
+:root {
+  --color-red: #f4511e;
+  --color-melrose: #a4b1f0;
+  --color-melrose-darker: #97a4e4;
+  --color-melrose-dark: #5a66aa;
+  --color-fountain: #59c7c8;
+  --color-white: #fdfdfd;
+  --color-grey-lightest: rgb(247, 249, 250);
+  --color-grey: #6c757d;
+  --color-black-a125: rgba(0, 0, 0, 0.125);
+  --color-black-a15: rgba(0, 0, 0, 0.15);
+  --color-black-a25: rgba(0, 0, 0, 0.25);
+  --color-black-a42: rgba(0, 0, 0, 0.42);
+  --color-black-a50: rgba(0, 0, 0, 0.5);
+  --color-black-a54: rgba(0, 0, 0, 0.54);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a,
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}

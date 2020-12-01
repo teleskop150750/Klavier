@@ -1,0 +1,24 @@
+/* form */
+
+.form {
+  font-size: 1.1em;
+}
+
+.form__group {
+  margin: 0.25em 0 1.5em;
+}
+
+.form__button {
+  display: block;
+  padding: 0.5em 1em;
+  color: var(--color-white);
+  background-color: var(--color-melrose);
+  border-radius: 3px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form__button:focus,
+.form__button:hover {
+  background-color: var(--color-melrose-dark);
+}

@@ -1,0 +1,123 @@
+/* Nav */
+
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+
+@media (min-width: 0) and (max-width: 955px) {
+  .nav {
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 955px) {
+  .nav {
+    gap: 1.5em;
+  }
+}
+
+.nav__logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.7em;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 0) and (max-width: 955px) {
+  .nav__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 100%;
+    background-color: var(--color-melrose);
+    box-shadow: 0 0.9rem 1rem -0.1rem var(--color-black-a15);
+  }
+
+  .nav__list--opening {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    transition-timing-function: ease-out;
+    transition-duration: 0.35s;
+    transition-property: height;
+  }
+
+  .nav__list--open {
+    display: block;
+  }
+}
+
+@media (min-width: 955px) {
+  .nav__list {
+    flex-grow: 1;
+  }
+}
+
+.nav__list-inner {
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 0) and (max-width: 955px) {
+  .nav__list-inner {
+    display: grid;
+    grid-template-columns: max-content;
+    row-gap: 1em;
+    padding: 0 1em 1em;
+  }
+}
+
+@media (min-width: 955px) {
+  .nav__list-inner {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 955px) {
+  .nav__item--right {
+    margin-left: auto;
+  }
+}
+
+.nav__link {
+  position: relative;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-white);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+}
+
+.nav__link::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 3px;
+  content: '';
+  background-color: var(--color-melrose-dark);
+  border-radius: 3px;
+  transition: all 0.4s;
+}
+
+.nav__link:focus::after,
+.nav__link:hover::after,
+.nav__link--active::after {
+  width: 100%;
+}
+
+@media (min-width: 955px) {
+  .nav__button {
+    display: none;
+  }
+}
