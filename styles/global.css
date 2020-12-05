@@ -45,3 +45,7 @@ button {
   background: transparent;
   border: none;
 }
+
+address {
+  font-style: normal;
+}
