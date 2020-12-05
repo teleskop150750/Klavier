@@ -78,6 +78,10 @@
     display: flex;
     gap: 1rem;
   }
+
+  .nav__item {
+    display: flex;
+  }
 }
 
 @media (min-width: 955px) {
@@ -99,7 +103,7 @@
 
 .nav__link::after {
   position: absolute;
-  bottom: -4px;
+  bottom: -5px;
   left: 0;
   display: block;
   width: 0;
